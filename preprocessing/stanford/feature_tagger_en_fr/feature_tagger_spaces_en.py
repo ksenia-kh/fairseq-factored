@@ -4,7 +4,7 @@ import os
 import sys
 
 #PATH = '/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14.tokenized.de-en.stanford/tmp'
-PATH = '/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr'
+PATH = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/'
 LANG = 'en'
 
 #snlp = stanfordnlp.Pipeline(lang=LANG, disable=['ner'])

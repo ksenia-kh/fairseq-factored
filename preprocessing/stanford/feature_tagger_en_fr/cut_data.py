@@ -2,7 +2,7 @@ import os
 import sys
 
 
-PATH = '/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr'
+PATH = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/'
 LANG = 'en'
 
 def main():
