@@ -4,7 +4,8 @@ import os
 import sys
 
 #PATH = '/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14.tokenized.de-en.stanford/tmp'
-PATH = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/'
+#PATH = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/'
+PATH = "/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr"
 LANG = 'en'
 
 #snlp = stanfordnlp.Pipeline(lang=LANG, disable=['ner'])
@@ -107,22 +108,22 @@ def efficient_tag_text(text):
 '''
 
 def main():
-    #for dataset in ['train', 'valid', 'test']:
-    print('Loaded', os.path.join(PATH, 'corpus.tc.1000' + '.' + LANG), flush=True)
-    with open(os.path.join(PATH, 'corpus.tc.1000' + '.' + LANG), 'r', encoding="utf8") as file:
-        text = file.read()
-    print("Running tagger...", flush=True)
-    text_token, text_lemma, text_pos, text_dep, text_tag = tag_text(text)
-    with open(os.path.join(PATH, 'train' + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
-        file.write(text_token)
-    with open(os.path.join(PATH, 'train' + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
-        file.write(text_lemma)
-    with open(os.path.join(PATH, 'train' + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:
-        file.write(text_pos)
-    with open(os.path.join(PATH, 'train' + '.' + LANG + '_depsS'), 'w', encoding="utf8") as file:
-        file.write(text_dep)
-    with open(os.path.join(PATH, 'train' + '.' + LANG + '_tagsS'), 'w', encoding="utf8") as file:
-        file.write(text_tag)
+    for dataset in ['corpus.tc.10000', 'dev', 'test']:
+        print('Loaded', os.path.join(PATH, dataset + '.' + LANG), flush=True)
+        with open(os.path.join(PATH, dataset + '.' + LANG), 'r', encoding="utf8") as file:
+            text = file.read()
+        print("Running tagger...", flush=True)
+        text_token, text_lemma, text_pos, text_dep, text_tag = tag_text(text)
+        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
+            file.write(text_token)
+        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
+            file.write(text_lemma)
+        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:
+            file.write(text_pos)
+        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_depsS'), 'w', encoding="utf8") as file:
+            file.write(text_dep)
+        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_tagsS'), 'w', encoding="utf8") as file:
+            file.write(text_tag)
 
 
 if __name__ == "__main__":
