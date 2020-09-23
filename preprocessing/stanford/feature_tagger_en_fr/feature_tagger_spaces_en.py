@@ -3,13 +3,9 @@
 import os
 import sys
 
-#PATH = '/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14.tokenized.de-en.stanford/tmp'
-#PATH = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/'
-PATH = "/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr"
+PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/"
+SUBDIR = "en-fr-joined-bpe"
 LANG = 'en'
-
-#snlp = stanfordnlp.Pipeline(lang=LANG, disable=['ner'])
-#nlp = StanfordNLPLanguage(snlp)
 
 import spacy
 nlp = spacy.load('en_core_web_sm')
@@ -114,15 +110,15 @@ def main():
             text = file.read()
         print("Running tagger...", flush=True)
         text_token, text_lemma, text_pos, text_dep, text_tag = tag_text(text)
-        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
+        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
             file.write(text_token)
-        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
+        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
             file.write(text_lemma)
-        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:
+        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:
             file.write(text_pos)
-        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_depsS'), 'w', encoding="utf8") as file:
+        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_depsS'), 'w', encoding="utf8") as file:
             file.write(text_dep)
-        with open(os.path.join(PATH, 'tmp', dataset + '.' + LANG + '_tagsS'), 'w', encoding="utf8") as file:
+        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_tagsS'), 'w', encoding="utf8") as file:
             file.write(text_tag)
 
 
