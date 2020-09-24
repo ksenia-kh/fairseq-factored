@@ -6,11 +6,11 @@
 #SBATCH --ignore-pbs
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfg/logs/preprocess-joined-bpe.log
 
-WORKING_DIR="/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr/tmp"
+WORKING_DIR="/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr/en-fr-bpe"
 SRC="en_tokensS"
 TGT="fr_tokensS"
 
-TRN_PREF="corpus.tc.10000"
+TRN_PREF="corpus.tc"
 VAL_PREF="dev"
 TES_PREF="test"
 
@@ -18,8 +18,6 @@ PYTHON="python"
 #FAIRSEQ_DIR="/home/usuaris/veu/jordi.armengol/tfg/new/src/fairseq-baseline-factored"
 
 DEST_DIR="/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr/tmp/en-fr-bpe"
-
-mkdir $DEST_DIR
 
 
 N_OP=32000
