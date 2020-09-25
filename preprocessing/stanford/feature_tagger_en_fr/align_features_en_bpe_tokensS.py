@@ -159,7 +159,7 @@ def align_bpe(text_bpe, tags):
 
 
 def main():
-    for dataset in ['corpus.tc.10000', 'dev', 'test']:
+    for dataset in ['corpus.tc', 'dev', 'test']:
         print(dataset)
         with open(os.path.join(PATH, dataset + '.bpe.' + LANG + '_tokensS'), 'r') as file:
             text_bpe_tokens = file.read()
