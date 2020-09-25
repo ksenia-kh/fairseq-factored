@@ -15,13 +15,13 @@ VAL_PREF="dev"
 TES_PREF="test"
 PYTHON="python"
 
-FAIRSEQ_DIR="home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
+FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 
 # Activate conda environment
 source ~/.bashrc
-conda activate env
+conda activate myenv
 
 SRC="en_deps"
 TGT="fr_tokensS"
