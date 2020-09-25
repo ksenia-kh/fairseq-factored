@@ -8,52 +8,45 @@
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfg/logs/preprocess-joined-bpe-tags.log
 
 
-WORKING_DIR="/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14.tokenized.de-en.stanford/tmp"
+WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
 
-TRN_PREF="train"
-VAL_PREF="valid"
+TRN_PREF="corpus.tc"
+VAL_PREF="dev"
 TES_PREF="test"
 PYTHON="python"
 
-FAIRSEQ_DIR="/home/usuaris/veu/jordi.armengol/tfg/new/src/fairseq-baseline-factored"
+FAIRSEQ_DIR="home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
 
-DEST_DIR="/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14-preprocessed-joined-stanford"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 
 # Activate conda environment
 source ~/.bashrc
 conda activate env
 
-#SRC="de_lemmas"
-#TGT="en"
-
-#stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
-#    --trainpref $WORKING_DIR/${TRN_PREF}.bpe --validpref $WORKING_DIR/${VAL_PREF}.bpe --testpref $WORKING_DIR/${TES_PREF}.bpe \
-#    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.en.txt --thresholdsrc 30
-
-SRC="de_tokensS_pos"
-TGT="en"
+SRC="en_deps"
+TGT="fr_tokensS"
 
 stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
     --trainpref $WORKING_DIR/${TRN_PREF}.bpe --validpref $WORKING_DIR/${VAL_PREF}.bpe --testpref $WORKING_DIR/${TES_PREF}.bpe \
-    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.en.txt --thresholdsrc 1
+    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.fr_tokensS.txt --thresholdsrc 1
 
-SRC="de_tokensS_deps"
-TGT="en"
-
-stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
-    --trainpref $WORKING_DIR/${TRN_PREF}.bpe --validpref $WORKING_DIR/${VAL_PREF}.bpe --testpref $WORKING_DIR/${TES_PREF}.bpe \
-    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.en.txt --thresholdsrc 1
-
-SRC="de_tokensS_tags"
-TGT="en"
+SRC="en_lemmas"
+TGT="fr_tokensS"
 
 stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
     --trainpref $WORKING_DIR/${TRN_PREF}.bpe --validpref $WORKING_DIR/${VAL_PREF}.bpe --testpref $WORKING_DIR/${TES_PREF}.bpe \
-    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.en.txt --thresholdsrc 1
+    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.fr_tokensS.txt --thresholdsrc 1
 
-SRC="de_tokensS_subword_tags"
-TGT="en"
+SRC="en_pos"
+TGT="fr_tokensS"
 
 stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
     --trainpref $WORKING_DIR/${TRN_PREF}.bpe --validpref $WORKING_DIR/${VAL_PREF}.bpe --testpref $WORKING_DIR/${TES_PREF}.bpe \
-    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.en.txt --thresholdsrc 1
+    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.fr_tokensS.txt --thresholdsrc 1
+
+SRC="en_tags"
+TGT="fr_tokensS"
+
+stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
+    --trainpref $WORKING_DIR/${TRN_PREF}.bpe --validpref $WORKING_DIR/${VAL_PREF}.bpe --testpref $WORKING_DIR/${TES_PREF}.bpe \
+    --destdir $DEST_DIR  --tgtdict $DEST_DIR/dict.fr_tokensS.txt --thresholdsrc 1
