@@ -6,7 +6,7 @@
 #SBATCH --ignore-pbs
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfg/logs/preprocess-joined-bpe.log
 
-WORKING_DIR="/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr/en-fr-bpe"
+WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
 SRC="en_tokensS"
 TGT="fr_tokensS"
 
@@ -15,9 +15,10 @@ VAL_PREF="dev"
 TES_PREF="test"
 
 PYTHON="python"
-#FAIRSEQ_DIR="/home/usuaris/veu/jordi.armengol/tfg/new/src/fairseq-baseline-factored"
+FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
-DEST_DIR="/home/ksenia/Documents/studies/MAI/Thesis/data/en-fr/tmp/en-fr-bpe"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
+DEST_DIR2="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 
 
 N_OP=32000
@@ -26,7 +27,9 @@ N_OP=32000
 
 # Activate conda environment
 source ~/.bashrc
-conda activate emma
+conda activate myenv
+
+mkdir $DEST_DIR2
 
 echo "apply joined bpe"
 
@@ -40,3 +43,8 @@ subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabular
 
 subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${SRC} --vocabulary-threshold 50 < ${WORKING_DIR}/${TES_PREF}.${SRC} > ${DEST_DIR}/${TES_PREF}.bpe.${SRC}
 subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${TGT} --vocabulary-threshold 50 < ${WORKING_DIR}/${TES_PREF}.${TGT} > ${DEST_DIR}/${TES_PREF}.bpe.${TGT}
+
+
+stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
+    --trainpref $DEST_DIR/${TRN_PREF}.bpe --validpref $DEST_DIR/${VAL_PREF}.bpe --testpref $DEST_DIR/${TES_PREF}.bpe \
+    --destdir $DEST_DIR2  --nwordstgt $N_OP --nwordssrc $N_OP
