@@ -6,7 +6,7 @@
 #SBATCH --ignore-pbs
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/preprocess-joined-bpe-mt.log
 
-WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr"
+WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data"
 SRC="en_tokensS"
 TGT="fr_tokensS"
 
