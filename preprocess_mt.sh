@@ -45,6 +45,5 @@ conda activate myenv
 #subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${TGT} --vocabulary-threshold 50 < ${WORKING_DIR}/${TES_PREF}.${TGT} > ${DEST_DIR}/${TES_PREF}.bpe.${TGT}
 
 stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
-   --trainpref $DEST_DIR/${TRN_PREF}.bpe --testpref $WORKING_DIR/$mt.bpe \
-   --destdir $WORKING_DIR --tgtdict $DEST_DIR2 --srcdict $DEST_DIR2 --only-source --nwordstgt $N_OP --nwordssrc $N_OP
-#--validpref $DEST_DIR/${VAL_PREF}.bpe \
+       --testpref $WORKING_DIR/$mt.bpe --destdir $WORKING_DIR --tgtdict $DEST_DIR2 --srcdict $DEST_DIR2 --only-source --nwordstgt $N_OP --nwordssrc $N_OP
+#--trainpref $DEST_DIR/${TRN_PREF}.bpe  #--validpref $DEST_DIR/${VAL_PREF}.bpe \
