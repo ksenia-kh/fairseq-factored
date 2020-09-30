@@ -16,7 +16,7 @@ CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-prepr
 CP="checkpoint_last.pt"
 #CP="model.pt"
 PYTHON="python"
-FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
+FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
 
 # Activate conda environment
 source ~/.bashrc
