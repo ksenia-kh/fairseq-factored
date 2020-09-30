@@ -26,4 +26,4 @@ conda activate myenv
 #    --beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation --remove-bpe
 
 stdbuf -i0 -e0 -o0 $PYTHON $FAIRSEQ_DIR/generate.py $DEST_DIR --path $CP_DIR/$CP \
-	--beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --raw-text --task translation --remove-bpe | tee $DEST_DIR/mt.${TGT}
+	--beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation --remove-bpe | tee $DEST_DIR/mt.${TGT}
