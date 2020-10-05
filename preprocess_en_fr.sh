@@ -29,7 +29,7 @@ N_OP=32000
 source ~/.bashrc
 conda activate myenv
 
-mkdir $DEST_DIR2
+#mkdir $DEST_DIR2
 
 #echo "apply joined bpe"
 
