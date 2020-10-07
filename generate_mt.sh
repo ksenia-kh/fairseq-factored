@@ -12,8 +12,8 @@ WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-
 SRC="en_tokensS"
 TGT="fr_tokensS"
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe/checkpoints2"
-CP="checkpoint_best.pt"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints2"
+CP="checkpoint_last.pt"
 #CP="model.pt"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
@@ -22,8 +22,5 @@ FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
 source ~/.bashrc
 conda activate myenv
 
-#stdbuf -i0 -e0 -o0 $PYTHON $FAIRSEQ_DIR/generate.py $DEST_DIR --path $CP_DIR/$CP \
-#    --beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation --remove-bpe
-
 stdbuf -i0 -e0 -o0 $PYTHON $FAIRSEQ_DIR/generate.py $DEST_DIR --path $CP_DIR/$CP \
-	--beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation --remove-bpe | tee $DEST_DIR/mt.${TGT}
+	--beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation --remove-bpe
