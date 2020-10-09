@@ -879,6 +879,6 @@ def transformer_wmt_en_fr(args):
     args.encoder_embed_dim_sizes = {'en_tokensS': 512, 'en_pos': 512}
     args.decoder_embed_dim = getattr(args, 'decoder_embed_dim', 512)
     args.decoder_ffn_embed_dim = getattr(args, 'decoder_ffn_embed_dim', 2048)
-    args.decoder_attention_heads = getattr(args, 'decoder_attention_heads', 6)
-    args.decoder_layers = getattr(args, 'decoder_layers', 8)
+    args.decoder_layers = getattr(args, 'decoder_layers', 6)
+    args.decoder_attention_heads = getattr(args, 'decoder_attention_heads', 8)
     factored_one_encoder_base_architecture(args)
