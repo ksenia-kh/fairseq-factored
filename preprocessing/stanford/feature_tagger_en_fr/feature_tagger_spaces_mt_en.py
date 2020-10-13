@@ -110,8 +110,8 @@ def main():
             text = file.read()
         print("Running tagger...", flush=True)
         text_token, text_lemma, text_pos, text_dep, text_tag = tag_text(text)
-        #with open(os.path.join(PATH, dataset + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
-        #    file.write(text_token)
+        with open(os.path.join(PATH, dataset + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
+            file.write(text_token)
         with open(os.path.join(PATH, dataset + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
             file.write(text_lemma)
         with open(os.path.join(PATH, dataset + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:

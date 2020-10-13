@@ -190,8 +190,8 @@ def main():
         repeated_pos = align_bpe(text_bpe_tokens, text_pos)
         repeated_deps = align_bpe(text_bpe_tokens, text_dep)
         repeated_tags = align_bpe(text_bpe_tokens, text_tag)
-        with open(os.path.join(PATH, dataset + '.bpe.' + LANG + '_tokens'), 'w') as file:
-            file.write(repeated_tokens)
+        #with open(os.path.join(PATH, dataset + '.bpe.' + LANG + '_tokens'), 'w') as file:
+        #    file.write(repeated_tokens)
         with open(os.path.join(PATH, dataset + '.bpe.' + LANG + '_lemmas'), 'w') as file:
             file.write(repeated_lemmas)
         with open(os.path.join(PATH, dataset + '.bpe.' + LANG + '_pos'), 'w') as file:
