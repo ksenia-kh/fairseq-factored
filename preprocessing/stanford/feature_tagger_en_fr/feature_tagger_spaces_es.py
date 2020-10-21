@@ -8,7 +8,7 @@ SUBDIR = "en-es-joined-bpe"
 LANG = 'en'
 
 import spacy
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('es_core_news_sm')
 
 def tag_sentence(sentence):
     doc = nlp(sentence)
@@ -112,14 +112,14 @@ def main():
         text_token, text_lemma, text_pos, text_dep, text_tag = tag_text(text)
         with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_tokensS'), 'w', encoding="utf8") as file:
             file.write(text_token)
-        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
-            file.write(text_lemma)
-        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:
-            file.write(text_pos)
-        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_depsS'), 'w', encoding="utf8") as file:
-            file.write(text_dep)
-        with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_tagsS'), 'w', encoding="utf8") as file:
-            file.write(text_tag)
+        #with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_lemmasS'), 'w', encoding="utf8") as file:
+        #    file.write(text_lemma)
+        #with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_posS'), 'w', encoding="utf8") as file:
+        #    file.write(text_pos)
+        #with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_depsS'), 'w', encoding="utf8") as file:
+        #    file.write(text_dep)
+        #with open(os.path.join(PATH, SUBDIR, dataset + '.' + LANG + '_tagsS'), 'w', encoding="utf8") as file:
+        #    file.write(text_tag)
 
 
 if __name__ == "__main__":
