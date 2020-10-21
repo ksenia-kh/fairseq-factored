@@ -16,4 +16,4 @@ PYTHON="python"
 source ~/.bashrc
 conda activate myenv
 
-stdbuf -i0 -e0 -o0 $PYTHON $FEATURE_TAGGER_DIR/feature_tagger_spaces.py
+stdbuf -i0 -e0 -o0 $PYTHON $FEATURE_TAGGER_DIR/feature_tagger_spaces_en.py
