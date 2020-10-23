@@ -5,7 +5,7 @@ import sys
 
 PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/"
 SUBDIR = "en-es-joined-bpe"
-LANG = 'en'
+LANG = 'es'
 
 import spacy
 nlp = spacy.load('es_core_news_sm')
