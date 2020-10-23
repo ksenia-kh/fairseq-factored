@@ -1,8 +1,9 @@
 #!/bin/bash
 
 
-#SBATCH -p veu-fast # Partition to submit to
+#SBATCH -p veu # Partition to submit to
 #SBATCH --mem=8G # Memory
+#SBATCH --gres=gpu:1
 #SBATCH --ignore-pbs                                                            
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/europarl_get_synsets_en_fr.log
 
