@@ -16,7 +16,7 @@ import time
 TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
 LANG = 'en'
 LANG_BABEL = LANG.upper()
-CHAR_LIMIT = 3500
+CHAR_LIMIT = 4000
 SERVICE_URL = 'https://babelfy.io/v1/disambiguate'
 KEY = '50a344d4-2c90-4fb5-b821-00e4fed84087'
 CANDS = 'TOP'
