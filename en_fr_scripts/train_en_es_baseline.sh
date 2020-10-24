@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=20G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/train-baseline-wmt-bpe-en-fr.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/train-baseline-wmt-bpe-en-es.log
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-preprocessed-bpe"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints7-es-b"
