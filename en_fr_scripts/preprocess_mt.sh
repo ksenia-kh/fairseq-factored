@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:0
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/preprocess-joined-bpe-mt.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/preprocess-joined-bpe-mt-es.log
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-es/"
 SRC="en_tokensS"
