@@ -2,7 +2,7 @@ import os
 import itertools
 
 #PATH = '/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14.tokenized.de-en.stanford/tmp'
-PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/"
+PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-es/"
 LANG = 'en'
 
 '''
@@ -129,6 +129,7 @@ def align_bpe(text_bpe, tags):
 def align_bpe(text_bpe, tags):
     res = ''
     for (index_line, (line_bpe, line_tags)) in enumerate(zip(text_bpe.splitlines(), tags.splitlines())):
+        print(index_line)
         bpe_tokens = line_bpe.split()
         tag_tokens = line_tags.split()
         bpe_index = 0
