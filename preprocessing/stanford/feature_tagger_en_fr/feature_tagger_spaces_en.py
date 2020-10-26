@@ -3,8 +3,8 @@
 import os
 import sys
 
-PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/"
-SUBDIR = "en-es-joined-bpe"
+PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/"
+SUBDIR = "de-en-joined-bpe"
 LANG = 'en'
 
 import spacy
