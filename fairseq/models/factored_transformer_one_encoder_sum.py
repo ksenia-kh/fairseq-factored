@@ -167,14 +167,11 @@ class FactoredTransformerOneEncoderSumModel(FairseqFactoredOneEncoderModel):
             # encoder_embed_tokens = None
             src_dicts = {}
             srcs = []
-            print(task.args.lang_pairs)
-            for lang_pair in set(map(task.sort_lang_pair, task.args.lang_pairs)):
+            for lang_pair in set(task.args.lang_pairs): #set(map(task.sort_lang_pair, task.args.lang_pairs))
                 src, tgt = lang_pair.split('-')
                 srcs.append(src)
                 src_dict = dicts[src]
                 src_dicts[src] = src_dict
-                print(src)
-                print(tgt)
                 encoder_embed_tokens[src] = build_embedding(
                     src_dict, args.encoder_embed_dim_sizes[src], args.encoder_embed_path
                 )
