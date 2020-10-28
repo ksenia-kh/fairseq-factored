@@ -172,6 +172,7 @@ class FactoredTransformerOneEncoderSumModel(FairseqFactoredOneEncoderModel):
                 srcs.append(src)
                 src_dict = dicts[src]
                 src_dicts[src] = src_dict
+                print(args.encoder_embed_dim_sizes.keys())
                 encoder_embed_tokens[src] = build_embedding(
                     src_dict, args.encoder_embed_dim_sizes[src], args.encoder_embed_path
                 )
