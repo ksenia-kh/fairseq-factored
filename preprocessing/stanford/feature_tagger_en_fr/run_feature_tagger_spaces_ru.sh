@@ -9,7 +9,7 @@
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/feature_tagger_ru_spaces.log
 
 
-FEATURE_TAGGER_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/stanford/feature_tagger_en_fr"
+FEATURE_TAGGER_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 PYTHON="python"
 
 # Activate conda environment
