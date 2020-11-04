@@ -13,7 +13,7 @@ import datetime
 
 import time
 
-TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
+TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
 LANG = 'en'
 LANG_BABEL = LANG.upper()
 CHAR_LIMIT = 4000
