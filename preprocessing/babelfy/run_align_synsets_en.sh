@@ -2,7 +2,7 @@
 
 
 #SBATCH -p veu # Partition to submit to
-#SBATCH --mem=8G # Memory
+#SBATCH --mem=20G # Memory
 #SBATCH --gres=gpu:1
 #SBATCH --ignore-pbs                                                            
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/europarl_assign_synsets_en_fr.log
