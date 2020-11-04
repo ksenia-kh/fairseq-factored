@@ -184,7 +184,7 @@ def align_synsets_bpe(synsets, text_bpe):
 def main():
     for dataset in ['corpus.tc', 'dev', 'test']:
         dataset_name = dataset + '.' + LANG + '_tokensS'
-        dataset_synsets_name = dataset_name + '_synsets'
+        dataset_synsets_name = dataset + '.' + LANG + '_synsets'
         text = None
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name), 'r') as file:
             text = file.read()
