@@ -8,6 +8,8 @@ import re
 
 import itertools
 
+import sys
+
 #TOKENIZED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14.tokenized.de-en', 'tmp')
 TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
 #BPE_TEXT_FILES_PATH = os.path.join('..','..','..','..','data','iwslt14-preprocessed-joined')
@@ -183,16 +185,23 @@ def align_synsets_bpe(synsets, text_bpe):
 
 def main():
     for dataset in ['corpus.tc', 'dev', 'test']:
+        print(dataset)
         dataset_name = dataset + '.' + LANG + '_tokensS'
         dataset_synsets_name = dataset + '.' + LANG + '_synsets'
         text = None
+        print(f'Reading into memory: {dataset_name}')
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name), 'r') as file:
             text = file.read()
+        print(f'Memory size of {dataset_name}: {sys.getsizeof(text)/1024**2} Mb')
         text_chunks = get_chunks(text, CHAR_LIMIT)
+        print(f'Memory size of {dataset_name} text chunks: {sys.getsizeof(text_chunks) / 1024 ** 2} Mb')
         read_synsets = None
+        print(f'Reading into memory: {dataset_synsets_name}')
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_synsets_name), 'r') as file:
             read_synsets = file.read()
+        print(f'Memory size of {dataset_synsets_name}: {sys.getsizeof(read_synsets) / 1024 ** 2} Mb')
         parsed_chunks = literal_eval(read_synsets)
+        print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
         index_aligned_chunks = align_indices(text_chunks, parsed_chunks)
         assigned_synsets = assign_synsets(synsets=flatten(index_aligned_chunks), text=text)
         POS_path = os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name + '_lemmas')
