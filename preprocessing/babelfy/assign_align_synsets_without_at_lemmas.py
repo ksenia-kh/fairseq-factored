@@ -9,6 +9,7 @@ import re
 import itertools
 
 import sys
+import json
 
 #TOKENIZED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14.tokenized.de-en', 'tmp')
 TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
@@ -182,6 +183,8 @@ def align_synsets_bpe(synsets, text_bpe):
             tag_index += 1
     return aligned_synsets
 
+def json_loads_wrapper(nested_list_str):
+    return json.loads(nested_list_str.replace("'", "\""))
 
 def main():
     for dataset in ['corpus.tc', 'dev', 'test']:
@@ -204,7 +207,8 @@ def main():
             read_synsets = file.read()
         print(f'Memory size of {dataset_synsets_name}: {sys.getsizeof(read_synsets) / 1024 ** 2} Mb')
         print(f'Evaluating {dataset_synsets_name} parsed chunks')
-        parsed_chunks = literal_eval(read_synsets)
+        #parsed_chunks = literal_eval(read_synsets)
+        parsed_chunks = json_loads_wrapper(read_synsets)
         print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
         print(f'Deleting {dataset_synsets_name}')
         del read_synsets
