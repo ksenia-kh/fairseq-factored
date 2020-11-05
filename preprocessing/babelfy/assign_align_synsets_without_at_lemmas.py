@@ -194,6 +194,7 @@ def main():
             text = file.read()
         print(f'Memory size of {dataset_name}: {sys.getsizeof(text)/1024**2} Mb')
         text_chunks = get_chunks(text, CHAR_LIMIT)
+        del text
         print(f'Memory size of {dataset_name} text chunks: {sys.getsizeof(text_chunks) / 1024 ** 2} Mb')
         read_synsets = None
         print(f'Reading into memory: {dataset_synsets_name}')
@@ -201,6 +202,7 @@ def main():
             read_synsets = file.read()
         print(f'Memory size of {dataset_synsets_name}: {sys.getsizeof(read_synsets) / 1024 ** 2} Mb')
         parsed_chunks = literal_eval(read_synsets)
+        del read_synsets
         print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
         index_aligned_chunks = align_indices(text_chunks, parsed_chunks)
         assigned_synsets = assign_synsets(synsets=flatten(index_aligned_chunks), text=text)
