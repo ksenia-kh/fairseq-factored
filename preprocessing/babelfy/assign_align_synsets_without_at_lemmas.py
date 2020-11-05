@@ -10,6 +10,7 @@ import itertools
 
 import sys
 import json
+import yaml
 
 #TOKENIZED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14.tokenized.de-en', 'tmp')
 TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
@@ -208,7 +209,8 @@ def main():
         print(f'Memory size of {dataset_synsets_name}: {sys.getsizeof(read_synsets) / 1024 ** 2} Mb')
         print(f'Evaluating {dataset_synsets_name} parsed chunks')
         #parsed_chunks = literal_eval(read_synsets)
-        parsed_chunks = json_loads_wrapper(read_synsets)
+        #parsed_chunks = json_loads_wrapper(read_synsets)
+        parsed_chunks = yaml.load(read_synsets)
         print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
         print(f'Deleting {dataset_synsets_name}')
         del read_synsets
