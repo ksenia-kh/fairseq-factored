@@ -184,7 +184,7 @@ def align_synsets_bpe(synsets, text_bpe):
     return aligned_synsets
 
 def json_loads_wrapper(nested_list_str):
-    return json.loads(nested_list_str.replace("'", "\""))
+    return json.loads(nested_list_str.replace("\'", "\""))
 
 def main():
     for dataset in ['corpus.tc', 'dev', 'test']:
