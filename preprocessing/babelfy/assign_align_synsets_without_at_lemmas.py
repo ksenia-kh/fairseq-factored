@@ -199,8 +199,6 @@ def main():
         print(f'Memory size of {dataset_name}: {sys.getsizeof(text)/1024**2} Mb')
         print(f'Evaluating {dataset_name} text chunks')
         text_chunks = get_chunks(text, CHAR_LIMIT)
-        print(f'Deleting {dataset_name}')
-        del text
         print(f'Memory size of {dataset_name} text chunks: {sys.getsizeof(text_chunks) / 1024 ** 2} Mb')
         read_synsets = None
         print(f'Reading into memory: {dataset_synsets_name}')
