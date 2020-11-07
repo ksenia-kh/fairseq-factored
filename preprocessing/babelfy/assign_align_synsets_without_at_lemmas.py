@@ -214,13 +214,14 @@ def main():
         del read_synsets
         index_aligned_chunks = align_indices(text_chunks, parsed_chunks)
         assigned_synsets = assign_synsets(synsets=flatten(index_aligned_chunks), text=text)
-        POS_path = os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name + '_lemmas')
+        POS_path = os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset + '.' + LANG + '_lemmasS')
         assigned_synsets = assign_POS_to_unknown_synsets(assigned_synsets, POS_path)
         print(f"Reading into memory: {dataset + '.bpe.' + LANG + '_tokensS'}")
         with open(os.path.join(BPE_TEXT_FILES_PATH, dataset + '.bpe.' + LANG + '_tokensS'), 'r') as f:
             text_bpe = f.read()
         print(f"Memory size of {dataset + '.bpe.' + LANG + '_tokensS'}: {sys.getsizeof(text_bpe) / 1024 ** 2} Mb")
         final_synsets = align_synsets_bpe(assigned_synsets, text_bpe)
+        print(f"Deleting {dataset + '.bpe.' + LANG + '_tokensS'}")
         del text_bpe
         with open(os.path.join(BPE_TEXT_FILES_PATH, dataset + '.bpe.' + LANG + '_synsets_wo_at_lemmas'), 'w') as f:
             f.write(final_synsets)
