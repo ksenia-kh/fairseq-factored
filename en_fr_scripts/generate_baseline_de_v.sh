@@ -5,14 +5,14 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-baseline-de-v.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-baseline-de-v-best.log
 
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-preprocessed-bpe"
 SRC="en_tokensS"
 TGT="de_tokensS"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints17-de-b-v"
-CP="average_model.pt"
+CP="checkpoint_best.pt"
 #CP="model.pt"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
