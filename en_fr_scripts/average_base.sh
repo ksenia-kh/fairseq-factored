@@ -9,7 +9,7 @@
 
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints15-de-deps"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints16-de-lemmas"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
