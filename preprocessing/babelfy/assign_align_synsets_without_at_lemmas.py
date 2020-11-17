@@ -188,7 +188,7 @@ def json_loads_wrapper(nested_list_str):
     return json.loads(nested_list_str.replace("\'", "\""))
 
 def main():
-    for dataset in ['corpus.tc', 'dev', 'test']:
+    for dataset in ['dev', 'test']:
         print(dataset)
         dataset_name = dataset + '.' + LANG + '_tokensS'
         dataset_synsets_name = dataset + '.' + LANG + '_synsets'
@@ -196,6 +196,8 @@ def main():
         print(f'Reading into memory: {dataset_name}')
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name), 'r') as file:
             text = file.read()
+        if dataset=='corpus.tc':
+            text = text.replace("['bn:00050587n', 3923, 3933]][[['bn:00066561n', 0, 9]","['bn:00050587n', 3923, 3933]],[[['bn:00066561n', 0, 9]")
         print(f'Memory size of {dataset_name}: {sys.getsizeof(text)/1024**2} Mb')
         print(f'Evaluating {dataset_name} text chunks')
         text_chunks = get_chunks(text, CHAR_LIMIT)
