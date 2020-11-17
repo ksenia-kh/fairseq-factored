@@ -205,13 +205,16 @@ def main():
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_synsets_name), 'r') as file:
             read_synsets = file.read()
         print(f'Memory size of {dataset_synsets_name}: {sys.getsizeof(read_synsets) / 1024 ** 2} Mb')
-        print(f'Evaluating {dataset_synsets_name} parsed chunks')
         #parsed_chunks = literal_eval(read_synsets)
         #parsed_chunks = json_loads_wrapper(read_synsets)
         if dataset == 'corpus.tc':
             start = read_synsets.find("['bn:00050587n', 3923, 3933]]")
+            print(start)
             new_start = start + len("['bn:00050587n', 3923, 3933]]")
+            print(new_start)
+            print(read_synsets[new_start:new_start+20])
             read_synsets = read_synsets[new_start:]
+        print(f'Evaluating {dataset_synsets_name} parsed chunks')
         parsed_chunks = yaml.load(read_synsets)
         print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
         print(f'Deleting {dataset_synsets_name}')
