@@ -13,7 +13,7 @@ import datetime
 
 import time
 
-TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-joined-bpe"
+TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
 LANG = 'en'
 LANG_BABEL = LANG.upper()
 CHAR_LIMIT = 4000
@@ -186,7 +186,7 @@ def get_synsets(chunk, flush_log, verbose):
 
 
 def main():
-    for dataset in  ['corpus.tc', 'dev', 'test']:
+    for dataset in  ['corpus.tc','dev','test']:
         dataset_name = dataset + '.' + LANG + '_tokensS'
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name), 'r') as file:
             text = file.read()
