@@ -13,9 +13,9 @@ import json
 import yaml
 
 #TOKENIZED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14.tokenized.de-en', 'tmp')
-TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
+TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
 #BPE_TEXT_FILES_PATH = os.path.join('..','..','..','..','data','iwslt14-preprocessed-joined')
-BPE_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-joined-bpe"
+BPE_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
 # PREPROCESSED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14-preprocessed-joined')
 LANG = 'en'
 CHAR_LIMIT = 3500
