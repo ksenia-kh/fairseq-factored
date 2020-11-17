@@ -196,10 +196,6 @@ def main():
         print(f'Reading into memory: {dataset_name}')
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name), 'r') as file:
             text = file.read()
-        if dataset=='corpus.tc':
-            start = text.find("['bn:00050587n', 3923, 3933]]")
-            new_start = start + len("['bn:00050587n', 3923, 3933]]")
-            text = text[new_start:]
         print(f'Memory size of {dataset_name}: {sys.getsizeof(text)/1024**2} Mb')
         print(f'Evaluating {dataset_name} text chunks')
         text_chunks = get_chunks(text, CHAR_LIMIT)
@@ -212,6 +208,10 @@ def main():
         print(f'Evaluating {dataset_synsets_name} parsed chunks')
         #parsed_chunks = literal_eval(read_synsets)
         #parsed_chunks = json_loads_wrapper(read_synsets)
+        if dataset == 'corpus.tc':
+            start = read_synsets.find("['bn:00050587n', 3923, 3933]]")
+            new_start = start + len("['bn:00050587n', 3923, 3933]]")
+            read_synsets = read_synsets[new_start:]
         parsed_chunks = yaml.load(read_synsets)
         print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
         print(f'Deleting {dataset_synsets_name}')
