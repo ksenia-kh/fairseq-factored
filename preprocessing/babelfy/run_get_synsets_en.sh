@@ -5,9 +5,9 @@
 #SBATCH --mem=8G # Memory
 #SBATCH --gres=gpu:1
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/europarl_get_synsets_mt.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/europarl_get_synsets_en_de.log
 
-SCRIPT_PATH="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/babelfy/get_synsets_en_mt.py"
+SCRIPT_PATH="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/babelfy/get_synsets_en.py"
 PYTHON="python"
 
 source ~/.bashrc
