@@ -196,6 +196,10 @@ def main():
         print(f'Reading into memory: {dataset_name}')
         with open(os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset_name), 'r') as file:
             text = file.read()
+        if dataset=='corpus.tc':
+            start = text.find("['bn:00050587n', 3923, 3933]]")
+            new_start = start + len("['bn:00050587n', 3923, 3933]]")
+            text = text[new_start:]
         print(f'Memory size of {dataset_name}: {sys.getsizeof(text)/1024**2} Mb')
         print(f'Evaluating {dataset_name} text chunks')
         text_chunks = get_chunks(text, CHAR_LIMIT)
