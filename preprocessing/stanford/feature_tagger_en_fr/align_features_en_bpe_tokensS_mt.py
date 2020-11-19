@@ -2,7 +2,7 @@ import os
 import itertools
 
 #PATH = '/home/usuaris/veu/jordi.armengol/tfg/new/data/iwslt14.tokenized.de-en.stanford/tmp'
-PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/de-en/"
+PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-ru/"
 LANG = 'en'
 
 '''
