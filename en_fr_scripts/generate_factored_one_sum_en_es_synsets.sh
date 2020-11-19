@@ -19,4 +19,4 @@ conda activate myenv
 #mkdir -p $CP_DIR
 
 stdbuf -i0 -e0 -o0 $PYTHON $FAIRSEQ_DIR/generate.py $WORKING_DIR --path $CP_DIR/$CP \
-	--beam 5 --batch-size 1 --lang-pairs en_tokensS-es_tokensS,en_synsets_wo_at_lemmas-fr_tokensS --task factored_translation --remove-bpe --target-lang es_tokensS --multiple-encoders False
+	--beam 5 --batch-size 1 --lang-pairs en_tokensS-es_tokensS,en_synsets_wo_at_lemmas-es_tokensS --task factored_translation --remove-bpe --target-lang es_tokensS --multiple-encoders False
