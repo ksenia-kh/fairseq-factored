@@ -6,7 +6,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=20G # Memory
 #SBATCH --ignore-pbs
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/feature_tagger_ru_spaces.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/feature_tagger_ru_spaces_mt.log
 
 
 FEATURE_TAGGER_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
