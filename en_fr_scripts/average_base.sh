@@ -9,7 +9,7 @@
 
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints13-de-pos"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints22-ru-tags"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
@@ -18,4 +18,4 @@ conda activate myenv
 
 
 stdbuf -i0 -e0 -o0 $PYTHON  $FAIRSEQ_DIR/scripts/average_checkpoints.py --inputs $CP_DIR \
-	--num-epoch-checkpoints 5 --output $CP_DIR/average_model.pt
+	--num-epoch-checkpoints 10 --output $CP_DIR/average_model.pt
