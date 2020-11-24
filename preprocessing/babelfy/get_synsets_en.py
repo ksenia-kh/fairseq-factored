@@ -192,8 +192,10 @@ def main():
             text = file.read()
         chunks = get_chunks(text, CHAR_LIMIT)
         synsets_file_path = os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset + '.' + LANG + '_synsets')
-        write_synsets_chunks(chunks=chunks, restore=0, file_path=synsets_file_path, dataset_name=dataset_name)
-
+        if dataset = 'corpus.tc':
+            write_synsets_chunks(chunks=chunks, restore=25996, file_path=synsets_file_path, dataset_name=dataset_name)
+        else:
+            write_synsets_chunks(chunks=chunks, restore=0, file_path=synsets_file_path, dataset_name=dataset_name)
 
 if __name__ == "__main__":
     main()
