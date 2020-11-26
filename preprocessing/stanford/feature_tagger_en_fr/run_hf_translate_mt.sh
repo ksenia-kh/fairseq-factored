@@ -2,7 +2,7 @@
 
 
 #SBATCH -p veu # Partition to submit to
-#SBATCH --mem=10G # Memory
+#SBATCH --mem=20G # Memory
 #SBATCH --gres=gpu:1
 #SBATCH --ignore-pbs
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/hf_translate_mt_es.log
