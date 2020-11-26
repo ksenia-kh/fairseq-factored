@@ -26,5 +26,5 @@ stdbuf -i0 -e0 -o0 $PYTHON $FAIRSEQ_DIR/train.py $WORKING_DIR \
  --clip-norm 0.0 --lr-scheduler inverse_sqrt --warmup-init-lr 1e-07 \
  --warmup-updates 4000 --lr 0.0007 --min-lr 1e-09 --dropout 0.1 --weight-decay 0.0 \
  --criterion label_smoothed_cross_entropy --label-smoothing 0.1 --max-tokens 4096 \
-  --save-dir $CP_DIR --lang-pairs en_tokensS-de_tokensS,en_pos-de_tokensS --max-update 320000 \
+  --save-dir $CP_DIR --lang-pairs en_tokensS-de_tokensS,en_pos-de_tokensS --max-update 160000 \
   --multiple-encoders False
