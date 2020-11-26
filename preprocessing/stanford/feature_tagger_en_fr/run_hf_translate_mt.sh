@@ -5,7 +5,7 @@
 #SBATCH --mem=10G # Memory
 #SBATCH --gres=gpu:1
 #SBATCH --ignore-pbs
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/hf_translate_mt_fr.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/hf_translate_mt_es.log
 
 
 FEATURE_TAGGER_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/stanford/feature_tagger_en_fr"

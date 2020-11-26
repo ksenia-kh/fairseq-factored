@@ -10,7 +10,7 @@ tokenizer = MarianTokenizer.from_pretrained(model_name)
 model = MarianMTModel.from_pretrained(model_name)
 
 PATH = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/'
-LANG = '>>fr<<'
+LANG = '>>es<<'
 
 def main():
 	with open(os.path.join(PATH, 'en.txt'), 'r', encoding="utf8") as file:
@@ -20,7 +20,7 @@ def main():
 	translated = model.generate(**tokenizer.prepare_seq2seq_batch(en_original_to_translate))
 	tgt_text = [tokenizer.decode(t, skip_special_tokens=True) for t in translated]
 	result = [en_original[i]+' ||| '+tgt_text[i]+'\n' for i in range(len(en_original))]
-	with open(os.path.join(PATH, 'en-fr.txt'),'w', encoding="utf8") as f:
+	with open(os.path.join(PATH, 'en-es.txt'),'w', encoding="utf8") as f:
 		for line in result:
 			f.write(line)
 
