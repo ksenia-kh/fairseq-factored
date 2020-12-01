@@ -7,7 +7,7 @@
 #SBATCH --ignore-pbs                                                            
 #SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/europarl_get_synsets_en_ru.log
 
-SCRIPT_PATH="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/babelfy/get_synsets_en_jordi.py"
+SCRIPT_PATH="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/babelfy/get_synsets_en.py"
 PYTHON="python"
 
 source ~/.bashrc

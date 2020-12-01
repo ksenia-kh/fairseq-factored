@@ -13,7 +13,7 @@ import datetime
 
 import time
 
-TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-joined-bpe"
+TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-ru/en-ru-joined-bpe"
 LANG = 'en'
 LANG_BABEL = LANG.upper()
 CHAR_LIMIT = 4000
@@ -55,9 +55,7 @@ def write_synsets_chunks(chunks, restore, file_path, dataset_name, keep_trying=T
             return
         index = None
         for index, chunk in enumerate(chunks):
-            if index < restore:
-                continue
-            if index != 0 and (index - restore) % (limit-1) == 0 and index > restore:
+            if index != 0 and index % (limit-1) == 0 and index != restore:
                 print('LIMIT?', flush=flush_log)
                 print('Last chunk not written! Next time restore should be set to', index, flush=flush_log)
                 print('Just in case, here you are! Last chunk NOT processed:', flush=flush_log)
@@ -66,6 +64,8 @@ def write_synsets_chunks(chunks, restore, file_path, dataset_name, keep_trying=T
                 print('Zzz...', flush=flush_log)
                 time.sleep(60*60*24 + 60)
                 #exit()
+            if index < restore:
+                continue
             print('chunk', index+1, 'of', len(chunks), 'at', dataset_name, flush=flush_log)
             synsets = get_synsets(chunk, flush_log, verbose=True)
             if synsets is None:
@@ -192,10 +192,11 @@ def main():
             text = file.read()
         chunks = get_chunks(text, CHAR_LIMIT)
         synsets_file_path = os.path.join(TOKENIZED_TEXT_FILES_PATH, dataset + '.' + LANG + '_synsets')
-        if dataset == 'corpus.tc':
+        write_synsets_chunks(chunks=chunks, restore=0, file_path=synsets_file_path, dataset_name=dataset_name)
+        '''if dataset == 'corpus.tc':
             write_synsets_chunks(chunks=chunks, restore=25995, file_path=synsets_file_path, dataset_name=dataset_name)
         else:
             write_synsets_chunks(chunks=chunks, restore=0, file_path=synsets_file_path, dataset_name=dataset_name)
-
+        '''
 if __name__ == "__main__":
     main()
