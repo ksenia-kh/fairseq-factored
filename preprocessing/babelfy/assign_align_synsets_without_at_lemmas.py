@@ -13,9 +13,9 @@ import json
 import yaml
 
 #TOKENIZED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14.tokenized.de-en', 'tmp')
-TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
+TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-joined-bpe"
 #BPE_TEXT_FILES_PATH = os.path.join('..','..','..','..','data','iwslt14-preprocessed-joined')
-BPE_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
+BPE_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-joined-bpe"
 # PREPROCESSED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14-preprocessed-joined')
 LANG = 'en'
 CHAR_LIMIT = 3500
@@ -207,6 +207,7 @@ def main():
         print(f'Memory size of {dataset_synsets_name}: {sys.getsizeof(read_synsets) / 1024 ** 2} Mb')
         #parsed_chunks = literal_eval(read_synsets)
         #parsed_chunks = json_loads_wrapper(read_synsets)
+        '''
         if dataset == 'corpus.tc':
             start = read_synsets.find("['bn:00050587n', 3923, 3933]]")
             print(start)
@@ -217,6 +218,7 @@ def main():
             start = read_synsets.find("['bn:00001227n', 3925, 3938]]")
             new_start = start + len("['bn:00001227n', 3925, 3938]]")
             read_synsets = read_synsets[new_start:]
+        '''
         print(f'Evaluating {dataset_synsets_name} parsed chunks')
         parsed_chunks = yaml.load(read_synsets)
         print(f'Memory size of {dataset_synsets_name} parsed chunks: {sys.getsizeof(parsed_chunks) / 1024 ** 2} Mb')
