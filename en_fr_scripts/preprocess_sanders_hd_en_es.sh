@@ -48,4 +48,4 @@ subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabular
 stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
     --trainpref $FTDIR/saunders_hd.bpe --destdir $FTDIR  \
     --srcdict $DEST_DIR2/dict.${SRC}.txt --tgtdict $DEST_DIR2/dict.${TGT}.txt \
-    --nwordstgt $N_OP --nwordssrc $N_OP --joined-dictionary
+    --nwordstgt $N_OP --nwordssrc $N_OP
