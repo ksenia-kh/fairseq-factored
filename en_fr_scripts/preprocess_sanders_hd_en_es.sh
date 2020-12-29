@@ -19,7 +19,7 @@ FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
 DEST_DIR2="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-preprocessed-bpe"
-DEST_DIR3 = '/home/usuaris/veu/ksenia.kharitonova/tfm/data/sanders-gender-debias/handcraft'
+DEST_DIR3 ="/home/usuaris/veu/ksenia.kharitonova/tfm/data/sanders-gender-debias/handcraft"
 
 N_OP=32000
 
