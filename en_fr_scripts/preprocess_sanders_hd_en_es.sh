@@ -19,7 +19,7 @@ FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-joined-bpe"
 DEST_DIR2="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-es/en-es-preprocessed-bpe"
-DEST_DIR3 ="/home/usuaris/veu/ksenia.kharitonova/tfm/data/sanders-gender-debias/handcraft"
+FTDIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/sanders-gender-debias/handcraft"
 
 N_OP=32000
 
@@ -38,14 +38,14 @@ echo "apply joined bpe"
 #subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${SRC} --vocabulary-threshold 50 < ${WORKING_DIR}/${TRN_PREF}.${SRC} > ${DEST_DIR}/${TRN_PREF}.bpe.${SRC}
 #subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${TGT} --vocabulary-threshold 50 < ${WORKING_DIR}/${TRN_PREF}.${TGT} > ${DEST_DIR}/${TRN_PREF}.bpe.${TGT}
 
-subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${SRC} --vocabulary-threshold 50 < ${DEST_DIR3}/saunders_hd.en > ${DEST_DIR3}/saunders_hd.bpe.${SRC}
-subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${TGT} --vocabulary-threshold 50 < ${DEST_DIR3}/saunders_hd.es > ${DEST_DIR3}/saunders_hd.bpe.${TGT}
+subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${SRC} --vocabulary-threshold 50 < ${FTDIR}/saunders_hd.en > ${FTDIR}/saunders_hd.bpe.${SRC}
+subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${TGT} --vocabulary-threshold 50 < ${FTDIR}/saunders_hd.es > ${FTDIR}/saunders_hd.bpe.${TGT}
 
 #subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${SRC} --vocabulary-threshold 50 < ${WORKING_DIR}/${TES_PREF}.${SRC} > ${DEST_DIR}/${TES_PREF}.bpe.${SRC}
 #subword-nmt apply-bpe -c ${DEST_DIR}/${TRN_PREF}.codes.${SRC}-${TGT} --vocabulary ${DEST_DIR}/${TRN_PREF}.vocab.${TGT} --vocabulary-threshold 50 < ${WORKING_DIR}/${TES_PREF}.${TGT} > ${DEST_DIR}/${TES_PREF}.bpe.${TGT}
 
 
 stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
-    --trainpref $DEST_DIR3/saunders_hd.bpe --destdir $DEST_DIR3  \
+    --trainpref $FTDIR/saunders_hd.bpe --destdir $FTDIR  \
     --srcdict $DEST_DIR2/dict.${SRC}.txt --tgtdict $DEST_DIR2/dict.${TGT}.txt \
     --nwordstgt $N_OP --nwordssrc $N_OP --joined-dictionary
