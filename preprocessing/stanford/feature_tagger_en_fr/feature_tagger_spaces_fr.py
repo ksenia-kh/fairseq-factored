@@ -104,7 +104,7 @@ def efficient_tag_text(text):
 '''
 
 def main():
-    for dataset in ['corpus.tc', 'dev', 'test']:
+    for dataset in ['corpus.tc']:
         print('Loaded', os.path.join(PATH, dataset + '.' + LANG), flush=True)
         with open(os.path.join(PATH, dataset + '.' + LANG), 'r', encoding="utf8") as file:
             text = file.read()
