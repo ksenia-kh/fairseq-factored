@@ -63,7 +63,7 @@ def assign_synsets(synsets, text):
         except:  # if non-alphanumeric chars break tokenization at the beginning of the word
             retry_count = 0
             start_synset -= 1
-            max_retry = 78  # changed to 78 for training. For test and valid, 5 was enough
+            max_retry = 100  # changed to 78 for training. For test and valid, 5 was enough
             while retry_count < max_retry:
                 retry_count += 1
                 try:
@@ -73,6 +73,8 @@ def assign_synsets(synsets, text):
                     start_synset -= 1
                     continue
             if retry_count == max_retry:
+                print(text[start_synset:start_synset + max_retry])
+                print(synset)
                 raise Exception('Malformed token at the beginning of the word!', start_synset, i)
         start_word, end_word = indices_split[word_index]
         if start_word == start_synset and end_word == end_synset:
