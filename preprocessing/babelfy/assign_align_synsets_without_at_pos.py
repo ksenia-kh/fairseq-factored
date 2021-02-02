@@ -13,9 +13,9 @@ import json
 import yaml
 
 #TOKENIZED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14.tokenized.de-en', 'tmp')
-TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-joined-bpe"
+TOKENIZED_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-ru/en-ru-joined-bpe"
 #BPE_TEXT_FILES_PATH = os.path.join('..','..','..','..','data','iwslt14-preprocessed-joined')
-BPE_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-joined-bpe"
+BPE_TEXT_FILES_PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-ru/en-ru-joined-bpe"
 # PREPROCESSED_TEXT_FILES_PATH = os.path.join('..', '..', '..', '..', 'data', 'iwslt14-preprocessed-joined')
 LANG = 'en'
 CHAR_LIMIT = 3500
@@ -63,7 +63,7 @@ def assign_synsets(synsets, text):
         except:  # if non-alphanumeric chars break tokenization at the beginning of the word
             retry_count = 0
             start_synset -= 1
-            max_retry = 78  # changed to 78 for training. For test and valid, 5 was enough
+            max_retry = 100  # changed to 78 for training. For test and valid, 5 was enough
             while retry_count < max_retry:
                 retry_count += 1
                 try:
