@@ -5,10 +5,10 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=20G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-factored-wmt-one-sum-en-fr-deps.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-factored-wmt-one-sum-en-fr-deps-new.log
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints5"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints36-fr-deps-new"
 CP="checkpoint_last.pt"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
