@@ -5,14 +5,14 @@
 #SBATCH --gres=gpu:0
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-mt-baseline.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-mt-baseline-fr-new.log
 
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 SRC="en_tokensS"
 TGT="fr_tokensS"
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints2"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints33-fr"
 CP="checkpoint_last.pt"
 #CP="model.pt"
 PYTHON="python"

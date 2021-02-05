@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:0
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-mt-factored-one-sum-deps.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-mt-factored-one-sum-deps-new.log
 
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
@@ -13,7 +13,7 @@ SRC1="en_tokensS"
 SRC2="en_deps"
 TGT="fr_tokensS"
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints5"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints36-fr-deps-new"
 CP="checkpoint_last.pt"
 #CP="model.pt"
 PYTHON="python"
