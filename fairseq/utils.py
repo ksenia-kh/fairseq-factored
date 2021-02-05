@@ -5,7 +5,7 @@
 # the root directory of this source tree. An additional grant of patent rights
 # can be found in the PATENTS file in the same directory.
 import importlib.util
-#import logging
+import logging
 import os
 import re
 import sys
@@ -22,8 +22,7 @@ def torch_persistent_save(*args, **kwargs):
             return torch.save(*args, **kwargs)
         except Exception:
             if i == 2:
-                pass
-                #logging.error(traceback.format_exc())
+                logging.error(traceback.format_exc())
 
 
 def convert_state_dict_type(state_dict, ttype=torch.FloatTensor):
