@@ -11,7 +11,7 @@
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 SRC="en_tokensS"
 TGT="fr_tokensS"
-DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints33-fr"
 CP="checkpoint_last.pt"
 #CP="model.pt"
