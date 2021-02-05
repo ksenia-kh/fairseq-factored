@@ -5,15 +5,15 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-mt-factored-one-sum-tags-de-new.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/generate-mt-factored-one-sum-synsets-pos-ru.log
 
 
-WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-preprocessed-bpe"
+WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-ru/en-ru-preprocessed-bpe"
 SRC1="en_tokensS"
-SRC2="en_tags"
-TGT="de_tokensS"
-DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/de-en/"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints14-de-tags"
+SRC2="en_synsets_wo_at_pos"
+TGT="ru_tokensS"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-ru/"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints41-ru-syn-pos"
 CP="average_model.pt"
 #CP="model.pt"
 PYTHON="python"
@@ -27,4 +27,4 @@ conda activate myenv
 #	--beam 5 --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation --remove-bpe
 
 stdbuf -i0 -e0 -o0 $PYTHON $FAIRSEQ_DIR/generate.py $DEST_DIR --path $CP_DIR/$CP \
-	--beam 5 --batch-size 1 --lang-pairs $SRC1-$TGT,$SRC2-$TGT --task factored_translation --remove-bpe --target-lang de_tokensS --multiple-encoders False
+	--beam 5 --batch-size 1 --lang-pairs $SRC1-$TGT,$SRC2-$TGT --task factored_translation --remove-bpe --target-lang fr_tokensS --multiple-encoders False
