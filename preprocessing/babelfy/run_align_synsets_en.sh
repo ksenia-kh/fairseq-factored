@@ -5,7 +5,7 @@
 #SBATCH --mem=30G # Memory
 #SBATCH --gres=gpu:1
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/mt_assign_synsets_pos_en_fr_new.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/mt_assign_synsets_pos_en_es_new.log
 
 SCRIPT_PATH="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/babelfy/assign_align_synsets_without_at_pos_mt.py"
 PYTHON="python"
