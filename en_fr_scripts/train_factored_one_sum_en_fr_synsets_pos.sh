@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:2
 #SBATCH --mem=20G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/train-factored-wmt-one-sum-en-fr-synsets-pos-new.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/train-factored-wmt-one-sum-en-fr-synsets-pos-new-retrain.log
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints39-fr-syn-pos"
