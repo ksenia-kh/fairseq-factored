@@ -153,7 +153,7 @@ def main(args):
     print('Done')
     
 if __name__ == '__main__':
-    parser = options.get_generation_add_lang_parser(interactive=True)
+    #parser = options.get_generation_add_lang_parser(interactive=True)
     options.add_encode_args(parser)
     args = options.parse_args_and_arch(parser)
     main(args)

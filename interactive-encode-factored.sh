@@ -103,10 +103,10 @@ source ~/.bashrc
 conda activate myenv
 
 
-mkdir -p  /tfm/data/mt/encodings/fr
+mkdir -p  /home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr
 
 #Bilingual FR baseline
-CP_DIR="/tfm/log/checkpoints33-fr"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints33-fr"
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 encode_notag /home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr/mt.bpe.en_tokensS /tfm/data/mt/encodings/fr/encodings-enfr-b.json en_tokensS fr_tokensS
 
