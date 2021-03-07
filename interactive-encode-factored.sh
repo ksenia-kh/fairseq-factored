@@ -64,7 +64,7 @@ encode_notag() {
     SRC=$3
     TGT=$4
     
-    head --l $N  $INPUT_DATA > tmp/tmp.$SRC 
+    #head --l $N  $INPUT_DATA > tmp/tmp.$SRC
     
 
     #subword-nmt apply-bpe -c $dest_dir/corpus.tc.shuf.codes < tmp/tmp.$src > tmp/tmp.bpe.$src
