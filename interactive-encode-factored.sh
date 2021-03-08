@@ -12,7 +12,7 @@ CP="checkpoint_last.pt"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 N=3888
-mkdir tmp
+#mkdir tmp
 
 
 
