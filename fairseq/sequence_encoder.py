@@ -76,9 +76,84 @@ class SequenceEncoder(object):
                 # return results in the same format as SequenceGenerator
                 yield id, src, ref, hypos
 
+    def encode_batched_itr(self, data_itr, max_length=220 ,cuda=False, timer=None,pad=True):
+        """Iterate over a batched dataset and yield scored translations."""
+        for sample in data_itr:
+            s = utils.move_to_cuda(sample) if cuda else sample
+            #s = self.pad_sample(s,max_length)
+            if timer is not None:
+                timer.start()
+            encodings = self.encode(s)
+            for i, id in enumerate(s['id'].data):
+                # remove padding from ref
+                if isinstance(s['net_input']['src_tokens'], list):
+                    src = utils.strip_pad(s['net_input']['src_tokens'][0].data[i, :], self.pad)
+                else:
+                    src = utils.strip_pad(s['net_input']['src_tokens'].data[i, :], self.pad)
+
+                #src = utils.strip_pad(input['src_tokens'].data[i, :], self.pad)
+                ref = utils.strip_pad(s['target'].data[i, :], self.pad) if s['target'] is not None else None
+                encoding_i = encodings['encoder_out'][i]
+                print(encoding_i.shape)
+                '''
+                if attn is not None:
+                    attn_i = attn[i]
+                    _, alignment = attn_i.max(dim=0)
+                else:
+                    attn_i = alignment = None
+                '''
+                hypos = [{
+                    'tokens': src,
+                    'encoding': encoding_i,
+                    'id':id
+                }]
+
+                if timer is not None:
+                    timer.stop(s['ntokens'])
+                # return results in the same format as SequenceGenerator
+                yield id, src, ref, hypos
+
+    def encode_batched_itr_factored(self, data_itr, lang_pair, max_length=220 ,cuda=False, timer=None,pad=True):
+        """Iterate over a batched dataset and yield scored translations."""
+        for sample in data_itr:
+            sample = sample[lang_pair]
+            s = utils.move_to_cuda(sample) if cuda else sample
+            #s = self.pad_sample(s,max_length)
+            if timer is not None:
+                timer.start()
+            encodings = self.encode(s)
+            for i, id in enumerate(s['id'].data):
+                # remove padding from ref
+                if isinstance(s['net_input']['src_tokens'], list):
+                    src = utils.strip_pad(s['net_input']['src_tokens'][0].data[i, :], self.pad)
+                else:
+                    src = utils.strip_pad(s['net_input']['src_tokens'].data[i, :], self.pad)
+
+                #src = utils.strip_pad(input['src_tokens'].data[i, :], self.pad)
+                ref = utils.strip_pad(s['target'].data[i, :], self.pad) if s['target'] is not None else None
+                encoding_i = encodings['encoder_out'][i]
+                print(encoding_i.shape)
+                '''
+                if attn is not None:
+                    attn_i = attn[i]
+                    _, alignment = attn_i.max(dim=0)
+                else:
+                    attn_i = alignment = None
+                '''
+                hypos = [{
+                    'tokens': src,
+                    'encoding': encoding_i,
+                    'id':id
+                }]
+
+                if timer is not None:
+                    timer.stop(s['ntokens'])
+                # return results in the same format as SequenceGenerator
+                yield id, src, ref, hypos
+
     def encode(self, sample):
         """Score a batch of translations."""
-        print(sample)
+        #print(sample)
         net_input = sample['net_input']
         print('Input shape', net_input['src_tokens'].shape)
         net_input.pop('prev_output_tokens',None)
