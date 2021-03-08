@@ -110,9 +110,9 @@ OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-
 SRC="en_tokensS"
 TGT="fr_tokensS"
 
-cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
-         --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation \
-        --output-file $OUTPUT --remove-bpe
+#cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+#         --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation \
+#        --output-file $OUTPUT --remove-bpe
 
 # Factored FR POS
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints34-fr-pos-new"

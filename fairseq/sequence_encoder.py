@@ -78,6 +78,7 @@ class SequenceEncoder(object):
 
     def encode(self, sample):
         """Score a batch of translations."""
+        print(sample)
         net_input = sample['net_input']
         print('Input shape', net_input['src_tokens'].shape)
         net_input.pop('prev_output_tokens',None)
