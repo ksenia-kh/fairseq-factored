@@ -106,13 +106,26 @@ mkdir -p  /home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr
 #Bilingual FR baseline
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints33-fr"
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr/"
-OUTPUT="/tfm/data/mt/encodings/fr/encodings-enfr-b.json"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-b.json"
 SRC="en_tokensS"
 TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation \
-        --output-file $OUTPUT --remove-bpe < tmp/tmp.$SRC
+        --output-file $OUTPUT --remove-bpe
+
+# Factored FR POS
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints34-fr-pos-new"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-f-pos.json"
+SRC1="en_tokensS"
+SRC2="en_pos"
+TGT="fr_tokensS"
+
+cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+         --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
+        --output-file $OUTPUT --remove-bpe --multiple-encoders False
+
 
 
 
