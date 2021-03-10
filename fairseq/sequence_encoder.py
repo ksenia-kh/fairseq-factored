@@ -9,6 +9,8 @@ import torch
 
 from fairseq import utils
 
+from collections import OrderedDict
+
 
 class SequenceEncoder(object):
     """Scores the target for a given source sentence."""
@@ -113,15 +115,30 @@ class SequenceEncoder(object):
                 # return results in the same format as SequenceGenerator
                 yield id, src, ref, hypos
 
-    def encode_batched_itr_factored(self, data_itr, lang_pair, max_length=220 ,cuda=False, timer=None,pad=True):
+    def encode_batched_itr_factored(self, data_itr, max_length=220 ,cuda=False, timer=None,pad=True):
         """Iterate over a batched dataset and yield scored translations."""
         for sample in data_itr:
-            sample = sample[lang_pair]
+            if isinstance(sample, OrderedDict): # factored
+                mixed_sample = {}
+                for lang_pair in sample:
+                    if sample[lang_pair] is None or len(sample[lang_pair]) == 0:
+                        continue
+                    if len(mixed_sample) == 0:
+                        mixed_sample = sample[lang_pair]
+                        src_tokens = mixed_sample['net_input']['src_tokens']
+                        mixed_sample['net_input']['src_tokens'] = torch.unsqueeze(src_tokens,
+                                                                                  0)  # torch.tensor(src_tokens)#.clone().detach()
+                    else:
+                        mixed_sample['net_input']['src_tokens'] = torch.cat((mixed_sample['net_input']['src_tokens'],
+                                                                             torch.unsqueeze(
+                                                                                 sample[lang_pair]['net_input'][
+                                                                                     'src_tokens'], 0)))
+                sample = mixed_sample
             s = utils.move_to_cuda(sample) if cuda else sample
             #s = self.pad_sample(s,max_length)
             if timer is not None:
                 timer.start()
-            encodings = self.encode(s)
+            encodings = self.encode_factored(s)
             for i, id in enumerate(s['id'].data):
                 # remove padding from ref
                 if isinstance(s['net_input']['src_tokens'], list):
@@ -161,6 +178,26 @@ class SequenceEncoder(object):
             with torch.no_grad():
                 model.eval()
                 encoder_out = model.encoder.forward(**net_input)
+                encoder_out['encoder_out'] = encoder_out['encoder_out'].permute(1,0,2)
+                #attn = decoder_out[1]
+
+                return encoder_out
+
+    def encode_factored(self, sample):
+        """Score a batch of factored translations."""
+        #print(sample)
+        net_input = sample['net_input']
+        print('Input shape', net_input['src_tokens'].shape)
+        net_input.pop('prev_output_tokens',None)
+        encoder_input = {
+            k: v for k, v in net_input.items()
+            if k != 'prev_output_tokens'
+        }
+        srclen = encoder_input['src_tokens'].size(1)
+        for model in self.models:
+            with torch.no_grad():
+                model.eval()
+                encoder_out = model.encoder.forward(**encoder_input)
                 encoder_out['encoder_out'] = encoder_out['encoder_out'].permute(1,0,2)
                 #attn = decoder_out[1]
 

@@ -98,7 +98,7 @@ def main(args):
     has_target = True
     with progress_bar.build_progress_bar(args, itr) as t:
         if args.task=='factored_translation':
-            encodings = encoder.encode_batched_itr_factored(t, lang_pair=key, cuda=use_cuda, timer=gen_timer, pad=pad)
+            encodings = encoder.encode_batched_itr_factored(t, cuda=use_cuda, timer=gen_timer, pad=pad)
         else:
             encodings = encoder.encode_batched_itr(t, cuda=use_cuda, timer=gen_timer,pad=pad)
         data = {}
