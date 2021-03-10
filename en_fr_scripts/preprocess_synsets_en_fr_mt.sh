@@ -23,7 +23,7 @@ DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-pre
 source ~/.bashrc
 conda activate myenv
 
-SRC="en_synsets_wo_at_lemmas"
+SRC="en_synsets_wo_at_pos"
 TGT="fr_tokensS"
 
 #stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
