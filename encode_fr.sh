@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:0
 #SBATCH --mem=20G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/interactive-encode-fr-baseline.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/encode-fr.log
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe"
 CP="checkpoint_last.pt"
@@ -126,6 +126,73 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
         --output-file $OUTPUT --remove-bpe --multiple-encoders False
 
+# Factored FR TAGS
 
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints35-fr-tags-new"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-f-tags.json"
+SRC1="en_tokensS"
+SRC2="en_tags"
+TGT="fr_tokensS"
+
+cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+         --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
+        --output-file $OUTPUT --remove-bpe --multiple-encoders False
+
+
+# Factored FR DEPS
+
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints36-fr-deps-new"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-f-deps.json"
+SRC1="en_tokensS"
+SRC2="en_deps"
+TGT="fr_tokensS"
+
+cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+         --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
+        --output-file $OUTPUT --remove-bpe --multiple-encoders False
+
+
+# Factored Fr Lemmas
+
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints37-fr-l"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-f-lemmas.json"
+SRC1="en_tokensS"
+SRC2="en_lemmas"
+TGT="fr_tokensS"
+
+cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+         --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
+        --output-file $OUTPUT --remove-bpe --multiple-encoders False
+
+
+# Factored Fr Syn-Lemmas
+
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints38-fr-syn"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-f-syn-lemmas.json"
+SRC1="en_tokensS"
+SRC2="en_synsets_wo_at_lemmas"
+TGT="fr_tokensS"
+
+cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+         --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
+        --output-file $OUTPUT --remove-bpe --multiple-encoders False
+
+
+# Factored Fr Syn-Pos
+
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints39-fr-syn-pos"
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-fr"
+OUTPUT="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr/encodings-enfr-f-syn-pos.json"
+SRC1="en_tokensS"
+SRC2="en_synsets_wo_at_pos"
+TGT="fr_tokensS"
+
+cuda_visible_devices="" stdbuf -i0 -e0 -o0 python encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
+         --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
+        --output-file $OUTPUT --remove-bpe --multiple-encoders False
 
 

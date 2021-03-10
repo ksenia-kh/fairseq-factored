@@ -149,7 +149,7 @@ class SequenceEncoder(object):
                 #src = utils.strip_pad(input['src_tokens'].data[i, :], self.pad)
                 ref = utils.strip_pad(s['target'].data[i, :], self.pad) if s['target'] is not None else None
                 encoding_i = encodings['encoder_out'][i]
-                print(encoding_i.shape)
+                #print(encoding_i.shape)
                 '''
                 if attn is not None:
                     attn_i = attn[i]
@@ -187,7 +187,7 @@ class SequenceEncoder(object):
         """Score a batch of factored translations."""
         #print(sample)
         net_input = sample['net_input']
-        print('Input shape', net_input['src_tokens'].shape)
+        #print('Input shape', net_input['src_tokens'].shape)
         net_input.pop('prev_output_tokens',None)
         encoder_input = {
             k: v for k, v in net_input.items()
