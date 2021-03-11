@@ -20,7 +20,7 @@ N=3888
 source ~/.bashrc
 conda activate myenv
 
-
+: '
 mkdir -p  $OUTPUT_DIR
 
 #Bilingual es baseline
@@ -81,7 +81,7 @@ TGT="es_tokensS"
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
         --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
-
+'
 
 # Factored es Syn-Lemmas
 
