@@ -5,6 +5,10 @@ ENCODINGS_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings/fr"
 VOCABULARY="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-fr/en-fr-preprocessed-bpe/dict.en_tokensS.txt"
 LABELS="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en.txt"
 
+# Activate conda environment
+source ~/.bashrc
+conda activate myenv
+
 echo $seed
 
 echo ''
