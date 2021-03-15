@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/preprocess-joined-bpe-synsets-lemmas-mt-de-new.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/preprocess-joined-bpe-synsets-pos-mt-de-new.log
 
 
 WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/de-en/"
@@ -23,7 +23,7 @@ DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-pre
 source ~/.bashrc
 conda activate myenv
 
-SRC="en_synsets_wo_at_lemmas"
+SRC="en_synsets_wo_at_pos"
 TGT="de_tokensS"
 
 #stdbuf -i0 -e0 -o0  $PYTHON $FAIRSEQ_DIR/preprocess.py --source-lang $SRC --target-lang $TGT \
