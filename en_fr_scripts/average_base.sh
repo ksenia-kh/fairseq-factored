@@ -18,4 +18,4 @@ conda activate myenv
 
 
 stdbuf -i0 -e0 -o0 $PYTHON  $FAIRSEQ_DIR/scripts/average_checkpoints.py --inputs $CP_DIR \
-	--num-epoch-checkpoints 10 --output $CP_DIR/average_model.pt
+	--num-epoch-checkpoints 6 --output $CP_DIR/average_model.pt
