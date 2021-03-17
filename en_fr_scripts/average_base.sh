@@ -5,11 +5,11 @@
 #SBATCH --gres=gpu:0
 #SBATCH --mem=30G # Memory
 #SBATCH --ignore-pbs                                                            
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/average27.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/average40.log
 
 
-WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/de-en/de-en-preprocessed-bpe"
-CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints27-de-syn-pos"
+WORKING_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/europarl/en-ru/en-ru-preprocessed-bpe"
+CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints40-ru-syn"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/"
 
