@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from . import FairseqDecoder, FairseqEncoder#, FactoredCompositeEncoder
+from . import FairseqDecoder, FairseqEncoder  #, FactoredCompositeEncoder
 from .factored_composite_encoder import FactoredCompositeEncoder
 from .factored_composite_encoder_sum import FactoredCompositeEncoderSum
 from fairseq.data import Dictionary
@@ -483,7 +483,13 @@ class FairseqFactoredOneEncoderModel(BaseFairseqModel):
         assert isinstance(self.encoder, FairseqEncoder)
         assert isinstance(self.decoder, FairseqDecoder)
 
-    def forward(self, src_tokens, src_lengths, prev_output_tokens):
+    def forward(self,
+                src_tokens,
+                src_lengths,
+                prev_output_tokens,
+                output_all_attentions: bool = False,  # added by Goro Kobayashi
+                output_all_norms: bool = False,  # added by Goro Kobayashi
+                ):
         """
         Run the forward pass for an encoder-decoder model.
 
@@ -505,7 +511,10 @@ class FairseqFactoredOneEncoderModel(BaseFairseqModel):
             the decoder's output, typically of shape `(batch, tgt_len, vocab)`
         """
         encoder_out = self.encoder(src_tokens, src_lengths)
-        decoder_out = self.decoder(prev_output_tokens, encoder_out)
+        decoder_out = self.decoder(prev_output_tokens, encoder_out,
+                                output_all_attentions = output_all_attentions,  # added by Goro Kobayashi
+                                output_all_norms = output_all_norms,  # added by Goro Kobayashi
+                                )
         return decoder_out
 
     @staticmethod
