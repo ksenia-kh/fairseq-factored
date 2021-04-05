@@ -45,7 +45,7 @@ TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
-        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
+        --output-file $OUTPUT_DIR/$OUTPUT --multiple-encoders False #--remove-bpe
 
 # Factored de TAGS
 
@@ -57,7 +57,7 @@ TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
-        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
+        --output-file $OUTPUT_DIR/$OUTPUT --multiple-encoders False #--remove-bpe
 
 
 # Factored de DEPS
@@ -70,7 +70,7 @@ TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
-        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
+        --output-file $OUTPUT_DIR/$OUTPUT --multiple-encoders False #--remove-bpe
 
 
 # Factored de Lemmas
@@ -83,7 +83,7 @@ TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
-        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
+        --output-file $OUTPUT_DIR/$OUTPUT --multiple-encoders False #--remove-bpe
 
 
 # Factored de Syn-Lemmas
@@ -96,7 +96,7 @@ TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
-        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
+        --output-file $OUTPUT_DIR/$OUTPUT --multiple-encoders False #--remove-bpe
 
 
 # Factored de Syn-Pos
@@ -109,6 +109,6 @@ TGT="fr_tokensS"
 
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
-        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
+        --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False #--remove-bpe
 
 
