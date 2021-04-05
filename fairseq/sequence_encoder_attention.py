@@ -162,7 +162,7 @@ class SequenceEncoderAttn(object):
         #print(sample)
         net_input = sample['net_input']
         #print('Input shape', net_input['src_tokens'].shape)
-        net_input.pop('prev_output_tokens',None)
+        #net_input.pop('prev_output_tokens',None)
         encoder_input = {
             k: v for k, v in net_input.items()
             if k != 'prev_output_tokens'
