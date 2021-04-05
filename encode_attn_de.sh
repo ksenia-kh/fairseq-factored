@@ -34,7 +34,7 @@ TGT="de_tokensS"
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation \
          --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe
-'
+
 
 # Factored de POS
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints13-de-pos"
@@ -97,12 +97,12 @@ TGT="de_tokensS"
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
         --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
-
+'
 
 # Factored de Syn-Pos
 
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints27-de-syn-pos"
-OUTPUT="extracted-attn-ende-f-syn-pos.json"
+OUTPUT="extracted-attn-ende-f-syn-pos.pkl"
 SRC1="en_tokensS"
 SRC2="en_synsets_wo_at_pos"
 TGT="de_tokensS"
