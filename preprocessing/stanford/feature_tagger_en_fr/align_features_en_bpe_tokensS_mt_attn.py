@@ -1,11 +1,11 @@
 import os
 import itertools
 
-PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/de-en/f-pos"
-PATH_POS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/de-en/f-pos"
-PATH_TAGS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/de-en/f-tags"
-PATH_DEPS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/de-en/f-deps"
-PATH_LEMMAS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/de-en/f-lemmas"
+PATH = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-pos"
+PATH_POS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-pos"
+PATH_TAGS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-tags"
+PATH_DEPS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-deps"
+PATH_LEMMAS = "/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-lemmas"
 
 LANG = 'en'
 
