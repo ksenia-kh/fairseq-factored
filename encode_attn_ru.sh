@@ -36,6 +36,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 '
 
 # Factored ru POS
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-pos"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints21-ru-pos"
 OUTPUT="extracted-attn-enru-f-pos.pkl"
 SRC1="en_tokensS"
@@ -48,6 +49,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored ru TAGS
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-tags"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints22-ru-tags"
 OUTPUT="extracted-attn-enru-f-tags.pkl"
 SRC1="en_tokensS"
@@ -61,6 +63,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored ru DEPS
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-deps"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints23-ru-deps"
 OUTPUT="extracted-attn-enru-f-deps.pkl"
 SRC1="en_tokensS"
@@ -74,6 +77,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored ru Lemmas
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-lemmas"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints24-ru-lemmas"
 OUTPUT="extracted-attn-enru-f-lemmas.pkl"
 SRC1="en_tokensS"
@@ -87,6 +91,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored ru Syn-Lemmas
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-syn-lemmas"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints40-ru-syn"
 OUTPUT="extracted-attn-enru-f-syn-lemmas.pkl"
 SRC1="en_tokensS"
@@ -100,6 +105,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored ru Syn-Pos
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-ru/f-syn-pos"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints41-ru-syn-pos"
 OUTPUT="extracted-attn-enru-f-syn-pos.pkl"
 SRC1="en_tokensS"
@@ -109,5 +115,3 @@ TGT="ru_tokensS"
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
         --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe --multiple-encoders False
-
-

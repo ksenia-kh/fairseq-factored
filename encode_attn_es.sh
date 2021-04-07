@@ -12,7 +12,6 @@ CP="checkpoint_last.pt"
 PYTHON="python"
 FAIRSEQ_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored"
 OUTPUT_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/encodings_attn/es"
-DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/en-es/"
 N=100
 #mkdir tmp
 
@@ -37,6 +36,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 '
 
 # Factored es POS
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-es/f-pos"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints8-es-pos"
 OUTPUT="extracted-attn-enes-f-pos.pkl"
 SRC1="en_tokensS"
@@ -49,6 +49,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored es TAGS
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-es/f-tags"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints9-es-tags"
 OUTPUT="extracted-attn-enes-f-tags.pkl"
 SRC1="en_tokensS"
@@ -62,6 +63,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored es DEPS
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-es/f-deps"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints10-es-deps"
 OUTPUT="extracted-attn-enes-f-deps.pkl"
 SRC1="en_tokensS"
@@ -75,6 +77,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored es Lemmas
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-es/f-lemmas"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints11-es-l"
 OUTPUT="extracted-attn-enes-f-lemmas.pkl"
 SRC1="en_tokensS"
@@ -88,6 +91,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored es Syn-Lemmas
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-es/f-syn-lemmas"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints12-es-syn"
 OUTPUT="extracted-attn-enes-f-syn-lemmas.pkl"
 SRC1="en_tokensS"
@@ -101,6 +105,7 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
 
 # Factored es Syn-Pos
 
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-es/f-syn-pos"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints25-es-syn-pos"
 OUTPUT="extracted-attn-enes-f-syn-pos.pkl"
 SRC1="en_tokensS"
