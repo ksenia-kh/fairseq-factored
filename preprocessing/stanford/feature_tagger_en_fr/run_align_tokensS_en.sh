@@ -4,7 +4,7 @@
 #SBATCH -p veu # Partition to submit to
 #SBATCH --mem=10G # Memory
 #SBATCH --ignore-pbs
-#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/align_en_tokens_tags_es_mt_attn.log
+#SBATCH --output=/home/usuaris/veu/ksenia.kharitonova/tfm/log/align_en_tokens_tags_de_mt_attn.log
 
 
 FEATURE_TAGGER_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/src/fairseq-factored/preprocessing/stanford/feature_tagger_en_fr"
