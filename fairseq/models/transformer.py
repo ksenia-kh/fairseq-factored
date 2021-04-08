@@ -7,9 +7,12 @@
 
 import math
 
+from typing import Dict, List, Optional
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torch import Tensor
 
 from fairseq import options
 from fairseq import utils
@@ -446,7 +449,16 @@ class TransformerDecoder(FairseqIncrementalDecoder):
         if self.normalize:
             self.layer_norm = LayerNorm(embed_dim)
 
-    def forward(self, prev_output_tokens, encoder_out=None, incremental_state=None):
+    def forward(self,
+                prev_output_tokens,
+                encoder_out=None,
+                incremental_state=None,
+                full_context_alignment: bool = False,
+                alignment_layer: Optional[int] = None,
+                alignment_heads: Optional[int] = None,
+                output_all_attentions: bool = False,  # added by Goro Kobayashi
+                output_all_norms: bool = False  # added by Goro Kobayashi
+                ):
         """
         Args:
             prev_output_tokens (LongTensor): previous decoder outputs of shape
@@ -463,6 +475,10 @@ class TransformerDecoder(FairseqIncrementalDecoder):
                 - the last decoder layer's attention weights of shape `(batch,
                   tgt_len, src_len)`
         """
+
+        if alignment_layer is None:
+            alignment_layer = len(self.layers) - 1
+
         # embed positions
         positions = self.embed_positions(
             prev_output_tokens,
@@ -490,7 +506,20 @@ class TransformerDecoder(FairseqIncrementalDecoder):
 
         inner_states = [x]
 
+        # -----added below by Goro Kobayashi-----
+        if output_all_attentions:
+            attn = []
+        else:
+            attn: Optional[Tensor] = None
+
+        if output_all_norms:
+            transformed_vector_norm = []
+            weighted_vector_norm = []
+            summed_weighted_vector_norm = []
+        # -----added above by Goro Kobayashi-----
+
         # decoder layers
+        '''
         for layer in self.layers:
             x, attn = layer(
                 x,
@@ -500,6 +529,45 @@ class TransformerDecoder(FairseqIncrementalDecoder):
                 self_attn_mask=self.buffered_future_mask(x) if incremental_state is None else None,
             )
             inner_states.append(x)
+        '''
+        for idx, layer in enumerate(self.layers):
+            if incremental_state is None and not full_context_alignment:
+                self_attn_mask = self.buffered_future_mask(x)
+            else:
+                self_attn_mask = None
+
+            print(type(encoder_out))
+            x, layer_attn, norm = layer(x,
+                encoder_out['encoder_out'] if encoder_out is not None else None,
+                encoder_out['encoder_padding_mask'] if encoder_out is not None else None,
+                incremental_state,
+                self_attn_mask=self_attn_mask,
+                #self_attn_padding_mask=self_attn_padding_mask,
+                need_attn=bool((idx == alignment_layer)),
+                need_head_weights=bool((idx == alignment_layer)),
+                output_all_attentions=output_all_attentions,  # added by Goro Kobayashi
+                output_all_norms=output_all_norms  # added by Goro Kobayashi
+            )
+            inner_states.append(x)
+
+            # -----added below by Goro Kobayashi-----
+            if output_all_attentions:
+                attn.append(layer_attn.float().to(x))
+            elif layer_attn is not None and idx == alignment_layer:
+                attn = layer_attn.float().to(x)
+
+            if output_all_norms:
+                transformed_vector_norm.append(norm[0].float().to(x))
+                weighted_vector_norm.append(norm[1].float().to(x))
+                summed_weighted_vector_norm.append(norm[2].float().to(x))
+            # -----added above by Goro Kobayashi-----
+
+        if attn is not None and not output_all_attentions:  # changed by Goro Kobayashi
+            if alignment_heads is not None:
+                attn = attn[:alignment_heads]
+
+            # average probabilities over heads
+            attn = attn.mean(dim=0)
 
         if self.normalize:
             x = self.layer_norm(x)
@@ -517,7 +585,17 @@ class TransformerDecoder(FairseqIncrementalDecoder):
             else:
                 x = F.linear(x, self.embed_out)
 
-        return x, {'attn': attn, 'inner_states': inner_states}
+        #return x, {'attn': attn, 'inner_states': inner_states}
+        # -----changed below by Goro Kobayashi-----
+        if not output_all_attentions:
+            attn = [attn]
+
+        if output_all_norms:
+            return x, {"attn": attn, "inner_states": inner_states,
+                               "norms": (transformed_vector_norm, weighted_vector_norm, summed_weighted_vector_norm)}
+        else:
+            return x, {"attn": attn, "inner_states": inner_states}
+        # -----changed above by Goro Kobayashi-----
 
     def max_positions(self):
         """Maximum output length supported by the decoder."""
@@ -678,9 +756,20 @@ class TransformerDecoderLayer(nn.Module):
     def prepare_for_onnx_export_(self):
         self.onnx_trace = True
 
-    def forward(self, x, encoder_out, encoder_padding_mask, incremental_state,
-                prev_self_attn_state=None, prev_attn_state=None, self_attn_mask=None,
-                self_attn_padding_mask=None):
+    def forward(self, x,
+                encoder_out,
+                encoder_padding_mask,
+                incremental_state,
+                prev_self_attn_state=None,
+                prev_attn_state=None,
+                self_attn_mask=None,
+                self_attn_padding_mask=None,
+                need_attn: bool = False,
+                need_head_weights: bool = False,
+                output_all_attentions: bool = False, # added by Goro Kobayashi
+                output_all_norms: bool = False, # added by Goro Kobayashi
+
+                ):
         """
         Args:
             x (Tensor): input to the layer of shape `(seq_len, batch, embed_dim)`
@@ -690,6 +779,10 @@ class TransformerDecoderLayer(nn.Module):
         Returns:
             encoded output of shape `(batch, src_len, embed_dim)`
         """
+
+        if need_head_weights:
+            need_attn = True
+
         residual = x
         x = self.maybe_layer_norm(self.self_attn_layer_norm, x, before=True)
         if prev_self_attn_state is not None:
@@ -721,6 +814,28 @@ class TransformerDecoderLayer(nn.Module):
                 prev_key, prev_value = prev_attn_state
                 saved_state = {"prev_key": prev_key, "prev_value": prev_value}
                 self.encoder_attn._set_input_buffer(incremental_state, saved_state)
+
+            # -----Changed below by Goro Kobayashi-----
+            outputs = self.encoder_attn(
+                    query=x,
+                    key=encoder_out,
+                    value=encoder_out,
+                    key_padding_mask=encoder_padding_mask,
+                    incremental_state=incremental_state,
+                    static_kv=True,
+                    need_weights=need_attn or (not self.training and self.need_attn),
+                    need_head_weights=need_head_weights,
+                    output_all_attentions=output_all_attentions,
+                    output_all_norms=output_all_norms,
+                )
+
+            if output_all_norms:
+                x, attn, norms = outputs
+            else:
+                x, attn = outputs
+            # -----Changed above by Goro Kobayashi-----
+
+            '''
             x, attn = self.encoder_attn(
                 query=x,
                 key=encoder_out,
@@ -730,6 +845,7 @@ class TransformerDecoderLayer(nn.Module):
                 static_kv=True,
                 need_weights=(not self.training and self.need_attn),
             )
+            '''
             x = F.dropout(x, p=self.dropout, training=self.training)
             x = residual + x
             x = self.maybe_layer_norm(self.encoder_attn_layer_norm, x, after=True)
@@ -746,7 +862,14 @@ class TransformerDecoderLayer(nn.Module):
             saved_state = self.self_attn._get_input_buffer(incremental_state)
             self_attn_state = saved_state["prev_key"], saved_state["prev_value"]
             return x, attn, self_attn_state
-        return x, attn
+
+        # -----changed below by Goro Kobayashi-----
+        if output_all_norms:
+            return x, attn, norms
+        else:
+            return x, attn, None
+        # -----changed above by Goro Kobayashi-----
+        #return x, attn
 
     def maybe_layer_norm(self, layer_norm, x, before=False, after=False):
         assert before ^ after

@@ -86,34 +86,7 @@ class SequenceEncoderAttn(object):
             if timer is not None:
                 timer.start()
             encodings = self.encode(s)
-            for i, id in enumerate(s['id'].data):
-                # remove padding from ref
-                if isinstance(s['net_input']['src_tokens'], list):
-                    src = utils.strip_pad(s['net_input']['src_tokens'][0].data[i, :], self.pad)
-                else:
-                    src = utils.strip_pad(s['net_input']['src_tokens'].data[i, :], self.pad)
-
-                #src = utils.strip_pad(input['src_tokens'].data[i, :], self.pad)
-                ref = utils.strip_pad(s['target'].data[i, :], self.pad) if s['target'] is not None else None
-                encoding_i = encodings['encoder_out'][i]
-                print(encoding_i.shape)
-                '''
-                if attn is not None:
-                    attn_i = attn[i]
-                    _, alignment = attn_i.max(dim=0)
-                else:
-                    attn_i = alignment = None
-                '''
-                hypos = [{
-                    'tokens': src,
-                    'encoding': encoding_i,
-                    'id':id
-                }]
-
-                if timer is not None:
-                    timer.stop(s['ntokens'])
-                # return results in the same format as SequenceGenerator
-                yield id, src, ref, hypos
+            yield encodings
 
     def encode_batched_itr_factored(self, data_itr, max_length=220 ,cuda=False, timer=None,pad=True):
         """Iterate over a batched dataset and yield scored translations."""
@@ -146,13 +119,22 @@ class SequenceEncoderAttn(object):
         """Score a batch of translations."""
         #print(sample)
         net_input = sample['net_input']
-        print('Input shape', net_input['src_tokens'].shape)
-        net_input.pop('prev_output_tokens',None)
+        #print('Input shape', net_input['src_tokens'].shape)
+        #net_input.pop('prev_output_tokens',None)
+        encoder_input = {
+            k: v for k, v in net_input.items()
+            if k != 'prev_output_tokens'
+        }
+        srclen = encoder_input['src_tokens'].size(1)
         for model in self.models:
             with torch.no_grad():
                 model.eval()
-                encoder_out = model.encoder.forward(**net_input)
-                encoder_out['encoder_out'] = encoder_out['encoder_out'].permute(1,0,2)
+                #encoder_out = model.encoder.forward(**net_input)
+                encoder_out = model.encoder.forward(**encoder_input)
+                outputs = model.decoder.forward(net_input['prev_output_tokens'], encoder_out=encoder_out,
+                                                output_all_attentions=True,  # added by Goro Kobayashi
+                                                output_all_norms=True  # added by Goro Kobayashi
+                                                )
                 #attn = decoder_out[1]
 
                 return encoder_out

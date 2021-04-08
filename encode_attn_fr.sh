@@ -23,8 +23,8 @@ git checkout attention-analysis
 
 mkdir -p  $OUTPUT_DIR
 
-: '
 #Bilingual fr baseline
+DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-fr/baseline"
 CP_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/log/checkpoints33-fr"
 OUTPUT="extracted-attn-enfr-b.pkl"
 SRC="en_tokensS"
@@ -33,7 +33,9 @@ TGT="fr_tokensS"
 cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.py $DEST_DIR --path $CP_DIR/$CP --n-points $N \
          --batch-size 1 --source-lang ${SRC} --target-lang ${TGT} --task translation \
          --output-file $OUTPUT_DIR/$OUTPUT --remove-bpe
-'
+
+
+: '
 
 # Factored fr POS
 DEST_DIR="/home/usuaris/veu/ksenia.kharitonova/tfm/data/mt/attn-analysis/en-fr/f-pos"
@@ -116,4 +118,4 @@ cuda_visible_devices="" stdbuf -i0 -e0 -o0 python $FAIRSEQ_DIR/encode_attention.
          --batch-size 1 --lang-pairs ${SRC1}-${TGT},${SRC2}-${TGT} --source-lang ${SRC1} --target-lang ${TGT} --task factored_translation \
         --output-file $OUTPUT_DIR/$OUTPUT --multiple-encoders False #--remove-bpe
 
-
+'
