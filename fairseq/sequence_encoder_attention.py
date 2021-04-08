@@ -137,7 +137,7 @@ class SequenceEncoderAttn(object):
                                                 )
                 #attn = decoder_out[1]
 
-                return encoder_out
+                return outputs
 
     def encode_factored(self, sample):
         """Score a batch of factored translations."""
