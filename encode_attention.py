@@ -14,12 +14,7 @@ import torch
 from fairseq import bleu, data, options, progress_bar, tasks, tokenizer, utils
 from fairseq.meters import StopwatchMeter, TimeMeter
 from fairseq.sequence_encoder_attention import SequenceEncoderAttn
-import json
 import pickle
-import numpy as np
-from fairseq.sequence_generator import SequenceGenerator
-import torch.nn as nn
-from fairseq.sequence_scorer import SequenceScorer
 
 
 def main(args):
